@@ -3,12 +3,12 @@ clear
 image = imread('circuit.tif');
 %Fourier transform
 fft = fftshift(fft2(image));
-%Apply filter
+%High-Pass filter
 filter = fftshift(ones(size(image)));
 filter(size(filter,1)/2 - 15:size(filter,1)/2 + 15,...
        size(filter,2)/2 - 15:size(filter,2)/2 + 15) = 0;
 fft_out = fft.*filter;
-%Homophobic filter
+%Homomorphic filter
 filter2 = fftshift(ones(size(image)))*2;
 filter2(size(filter2,1)/2 - 15:size(filter2,1)/2 + 15,...
        size(filter2,2)/2 - 15:size(filter2,2)/2 + 15) = 0.6;
